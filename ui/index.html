@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HoN AI COMMANDER</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI COMMANDER <span class="version">v2.0 RUST</span></h1>
+            <div class="status-bar">
+                <span id="system-status">SYSTEM: READY</span>
+            </div>
+        </header>
+
+        <div class="grid-layout">
+            
+            <section class="card">
+                <h2>GAME CONFIGURATION</h2>
+                
+                <div class="control-group">
+                    <label>FACTION</label>
+                    <div class="toggle-group" id="faction-group">
+                        <button class="btn-toggle active" onclick="selectOption('faction', 'Legion', this)">LEGION</button>
+                        <button class="btn-toggle" onclick="selectOption('faction', 'Hellbourne', this)">HELLBOURNE</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>HERO MODULE</label>
+                    <div class="toggle-group" id="hero-group">
+                        <button class="btn-toggle active" onclick="selectOption('hero', 'Legionnaire', this)">LEGIONNAIRE</button>
+                        <button class="btn-toggle" onclick="selectOption('hero', 'Other', this)">OTHER</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>UI ANCHOR</label>
+                    <div class="toggle-group" id="ui-group">
+                        <button class="btn-toggle" onclick="selectOption('ui', 'Left', this)">LEFT</button>
+                        <button class="btn-toggle active" onclick="selectOption('ui', 'Right', this)">RIGHT</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>SYSTEM & AUDIO</h2>
+
+                <div class="row-setting">
+                    <span class="setting-label">GPU ACCELERATION (OCR)</span>
+                    <label class="switch">
+                        <input type="checkbox" id="gpu-toggle" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <hr class="divider">
+
+                <div class="audio-grid">
+                    <div class="audio-item">
+                        <span>RUNE ALERT</span>
+                        <label class="switch small"><input type="checkbox" checked><span class="slider round"></span></label>
+                    </div>
+                    <div class="audio-item">
+                        <span>STACK TIMER</span>
+                        <label class="switch small"><input type="checkbox" checked><span class="slider round"></span></label>
+                    </div>
+                    <div class="audio-item">
+                        <span>KONGOR</span>
+                        <label class="switch small"><input type="checkbox" checked><span class="slider round"></span></label>
+                    </div>
+                    <div class="audio-item">
+                        <span>PHOENIX</span>
+                        <label class="switch small"><input type="checkbox"><span class="slider round"></span></label>
+                    </div>
+                    <div class="audio-item highlight">
+                        <span>EXECUTE (ULTI)</span>
+                        <label class="switch small"><input type="checkbox" checked><span class="slider round"></span></label>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <button id="btn-launch" class="btn-launch" onclick="launchBot()">
+                ENGAGE SYSTEM
+            </button>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

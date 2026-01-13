@@ -1,8 +1,7 @@
 use windows::{
-    Globalization::Language,
     Graphics::Imaging::{BitmapPixelFormat, SoftwareBitmap},
     Media::Ocr::OcrEngine,
-    Storage::Streams::{DataWriter, InMemoryRandomAccessStream},
+    Storage::Streams::DataWriter,
 };
 
 pub struct HonOcr {
@@ -11,36 +10,29 @@ pub struct HonOcr {
 
 impl HonOcr {
     pub fn new() -> Self {
-        // Kullanıcının dilini otomatik algıla ve motoru başlat
-        // Python'daki 'reader = easyocr.Reader...' satırının karşılığı ama çok daha hafif.
         let engine = OcrEngine::TryCreateFromUserProfileLanguages()
             .expect("OCR Motoru başlatılamadı. Windows dil paketi yüklü mü?");
-        
         Self { engine }
     }
 
     pub async fn read_text(&self, width: i32, height: i32, pixel_data: &[u8]) -> String {
-        // 1. Ham piksel verisini Windows Bitmap formatına çevir
-        let bitmap = SoftwareBitmap::CreateCustom(
-            BitmapPixelFormat::Bgra8, 
-            width, 
+        // 1. Piksel verisini (Vec<u8>) Windows Buffer'ına çevir
+        let writer = DataWriter::new().unwrap();
+        // Veriyi yaz
+        writer.WriteBytes(pixel_data).unwrap();
+        // Buffer nesnesini al
+        let buffer = writer.DetachBuffer().unwrap();
+
+        // 2. Buffer'dan SoftwareBitmap oluştur
+        // CreateCopyFromBuffer fonksiyonu veriyi kopyalar, böylece güvenlidir.
+        let bitmap = SoftwareBitmap::CreateCopyFromBuffer(
+            &buffer,
+            BitmapPixelFormat::Bgra8,
+            width,
             height
         ).unwrap();
 
-        // Pikselleri bitmap belleğine kopyala
-        {
-            let buffer = bitmap.LockBuffer(windows::Graphics::Imaging::BitmapBufferAccessMode::ReadWrite).unwrap();
-            let reference = buffer.CreateReference().unwrap();
-            
-            // Not: Windows Runtime buffer erişimi biraz karmaşıktır,
-            // burada 'IMemoryBufferByteAccess' arayüzü gerekir.
-            // Rust'ta bunu basitleştirmek için genellikle yardımcı fonksiyonlar kullanılır.
-            // Bu örnekte veri aktarımı yapıldığını varsayıyoruz.
-            // (Basitlik adına: Gerçek uygulamada buraya veri kopyalama bloğu eklenmeli)
-        }
-
-        // 2. OCR İşlemi (Async)
-        // Python'daki reader.readtext() fonksiyonunun karşılığı
+        // 3. OCR İşlemi (Artık hata vermeyecek)
         match self.engine.RecognizeAsync(&bitmap) {
             Ok(op) => match op.await {
                 Ok(result) => result.Text().unwrap_or_default().to_string(),

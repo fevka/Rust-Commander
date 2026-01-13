@@ -1,0 +1,213 @@
+/* CYBERPUNK THEME - HON CONFIG UYUMLU */
+:root {
+    --bg-color: #0f0f12;
+    --panel-color: #1a1b20;
+    --accent-color: #00f0ff; /* Cyber Cyan */
+    --text-dim: #888888;
+    --text-bright: #eeeeee;
+    --border-color: #2a2b30;
+    --danger-color: #ff1744;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-bright);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    user-select: none;
+    overflow: hidden; /* Scroll yok */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* HEADER */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.version {
+    font-size: 12px;
+    color: var(--accent-color);
+    vertical-align: super;
+}
+
+#system-status {
+    font-size: 12px;
+    color: var(--text-dim);
+    font-family: 'Consolas', monospace;
+}
+
+/* CARDS */
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    flex-grow: 1;
+}
+
+.card {
+    background-color: var(--panel-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+/* BUTTONS & TOGGLES */
+.control-group {
+    margin-bottom: 25px;
+}
+
+.control-group label {
+    display: block;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+}
+
+.toggle-group {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-toggle {
+    flex: 1;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-dim);
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: bold;
+}
+
+.btn-toggle:hover {
+    border-color: var(--accent-color);
+    color: var(--text-bright);
+}
+
+.btn-toggle.active {
+    background: var(--accent-color);
+    color: #000;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+/* SWITCHES (GPU & AUDIO) */
+.row-setting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.audio-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.audio-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #222;
+}
+
+.audio-item.highlight {
+    color: var(--accent-color);
+}
+
+/* Modern Toggle Switch CSS */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #333;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--accent-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* FOOTER BUTTON */
+.btn-launch {
+    width: 100%;
+    padding: 15px;
+    background-color: #222;
+    color: #555;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: not-allowed;
+    margin-top: 20px;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.btn-launch.ready {
+    background-color: var(--accent-color);
+    color: #000;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+}
+
+.btn-launch.ready:hover {
+    background-color: #fff;
+}
