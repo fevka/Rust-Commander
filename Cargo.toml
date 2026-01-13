@@ -1,0 +1,21 @@
+[package]
+name = "hon_commander"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Asenkron işlemler (Python'daki threading yerine)
+tokio = { version = "1", features = ["full"] }
+
+# Windows API (OCR ve Ekran Yakalama için)
+[dependencies.windows]
+version = "0.52"
+features = [
+    "Media_Ocr",                # Windows 10/11 Gömülü OCR
+    "Globalization",            # Dil desteği
+    "Graphics_Imaging",         # Resim işleme
+    "Storage_Streams",          # Veri akışı
+    "Win32_Graphics_Gdi",       # Ekran görüntüsü alma (Hızlı GDI)
+    "Win32_UI_WindowsAndMessaging", # Ekran boyutlarını alma
+    "Foundation",
+]
