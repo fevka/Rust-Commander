@@ -7,15 +7,13 @@ edition = "2021"
 tauri-build = { version = "1", features = [] }
 
 [dependencies]
-# DÜZELTME: "system-tray" özelliğini buradan sildik
+# Ana kütüphaneler
 tauri = { version = "1", features = ["api-all", "devtools"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-# ... (Mevcut kodlar)
+rodio = "0.17"
 
-[dependencies.rodio]
-version = "0.17"
-
+# Hata veren kütüphane buydu, şimdi doğru yerde:
 tokio = { version = "1", features = ["full"] }
 
 [dependencies.windows]
@@ -30,5 +28,4 @@ features = [
     "Win32_Foundation",
     "Win32_System_WinRT",
     "Foundation"
-	
 ]

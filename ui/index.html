@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>AI COMMANDER <span class="version">v2.0 RUST</span></h1>
+            <h1>AI COMMANDER <span class="version">v2.1 BOSS</span></h1>
             <div class="status-bar">
                 <span id="system-status">SYSTEM: READY</span>
             </div>
@@ -46,37 +46,33 @@
             </section>
 
             <section class="card">
-                <h2>SYSTEM & AUDIO</h2>
+                <h2>BATTLE TRACKER</h2>
 
-                <div class="row-setting">
-                    <span class="setting-label">GPU ACCELERATION (OCR)</span>
-                    <label class="switch">
-                        <input type="checkbox" id="gpu-toggle" checked>
-                        <span class="slider round"></span>
-                    </label>
+                <div class="control-group">
+                    <label>BOSS DIED (CLICK TO RESET TIMER)</label>
+                    <div class="toggle-group">
+                        <button class="btn-toggle btn-boss" onclick="reportBoss('Kongor')">
+                            KONGOR
+                        </button>
+                        <button class="btn-toggle btn-boss" onclick="reportBoss('Phoenix')">
+                            PHOENIX
+                        </button>
+                    </div>
                 </div>
 
                 <hr class="divider">
 
                 <div class="audio-grid">
                     <div class="audio-item">
-                        <span>RUNE ALERT</span>
+                        <span>RUNE (Every 2m)</span>
                         <label class="switch small"><input type="checkbox" checked><span class="slider round"></span></label>
                     </div>
                     <div class="audio-item">
-                        <span>STACK TIMER</span>
+                        <span>STACK (Warn: x:50)</span>
                         <label class="switch small"><input type="checkbox" checked><span class="slider round"></span></label>
-                    </div>
-                    <div class="audio-item">
-                        <span>KONGOR</span>
-                        <label class="switch small"><input type="checkbox" checked><span class="slider round"></span></label>
-                    </div>
-                    <div class="audio-item">
-                        <span>PHOENIX</span>
-                        <label class="switch small"><input type="checkbox"><span class="slider round"></span></label>
                     </div>
                     <div class="audio-item highlight">
-                        <span>EXECUTE (ULTI)</span>
+                        <span>EXECUTE (Auto)</span>
                         <label class="switch small"><input type="checkbox" checked><span class="slider round"></span></label>
                     </div>
                 </div>
@@ -85,7 +81,7 @@
 
         <footer>
             <button id="btn-launch" class="btn-launch" onclick="launchBot()">
-                ENGAGE SYSTEM
+                ENGAGE SYSTEM (AT 00:00)
             </button>
         </footer>
     </div>
