@@ -91,10 +91,6 @@ Execute Feature:
 
 The bot continuously scans the specific screen region defined in config.rs (default is top-left target frame). Ensure your game resolution matches or update the coordinates in the config.
 
-# Project Name
-
-This software is developed strictly for **educational and testing purposes**.
-
 ## ⚠️ Disclaimer / Warning
 
 Please read this section carefully before using the software:
